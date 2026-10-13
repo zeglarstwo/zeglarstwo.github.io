@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>Quantum Sails Poland // TWOSTAR 2028 Project Presentation</title>
+    <style>
+        :root {
+            --bg-dark: #070b12;
+            --bg-panel: #0b111e;
+            --bg-card: #111927;
+            --border-color: #1a2436;
+            --accent-quantum: #00b4d8; 
+            --accent-glow: rgba(0, 180, 216, 0.2);
+            --text-white: #ffffff;
+            --text-muted: #94a3b8;
+            --gold: #ffd700;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* SIDEBAR NAVIGATION */
+        .sidebar {
+            width: 260px;
+            background: var(--bg-panel);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            flex-shrink: 0;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .brand-header {
+            padding: 10px 20px 20px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .brand-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--text-white);
+        }
+
+        .brand-subtitle {
+            font-size: 0.7rem;
+            color: var(--accent-quantum);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-item {
+            padding: 12px 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item:hover {
+            color: var(--text-white);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .nav-item.active {
+            background: var(--accent-glow);
+            color: var(--accent-quantum);
+            border-left-color: var(--accent-quantum);
+            font-weight: 900;
+        }
+
+        /* MAIN STAGE */
+        .main-stage {
+            margin-left: 260px;
+            flex-grow: 1;
+            background: var(--bg-dark);
+            padding: 40px 60px 80px 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-container {
+            display: none;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .slide-container.active {
+            display: flex !important;
+        }
+
+        /* SLIDE HEADERS */
+        .slide-tag {
+            color: var(--accent-quantum);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .slide-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .slide-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        /* GRIDS */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            position: relative;
+        }
+
+        .card.highlight-quantum {
+            background: var(--accent-quantum);
+            color: #050a12 !important;
+            border: none;
+        }
+
+        .card.highlight-quantum .card-title,
+        .card.highlight-quantum p,
+        .card.highlight-quantum strong,
+        .card.highlight-quantum .stat-number,
+        .card.highlight-quantum ul.card-list li {
+            color: #050a12 !important;
+            font-weight: 600;
+        }
+
+        .card.highlight-quantum ul.card-list li::before {
+            color: #050a12 !important;
+        }
+
+        .card.border-quantum {
+            border: 1px solid var(--accent-quantum);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .card.highlight-gold {
+            border: 1px solid var(--gold);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .card.highlight-gold .card-title {
+            color: var(--gold);
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--accent-quantum);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 10px;
+            color: var(--accent-quantum);
+        }
+
+        .card p {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        .card p strong {
+            color: var(--text-white);
+        }
+
+        ul.card-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul.card-list li {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 16px;
+        }
+
+        ul.card-list li::before {
+            content: "•";
+            color: var(--accent-quantum);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* TABLES */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        .data-table th, .data-table td {
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .data-table th {
+            background: var(--bg-panel);
+            color: var(--accent-quantum);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .data-table td {
+            background: var(--bg-card);
+            color: var(--text-muted);
+        }
+
+        .data-table td strong {
+            color: var(--text-white);
+        }
+
+        /* TIMELINE */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .timeline-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .timeline-box.active-quantum {
+            border: 1px solid var(--accent-quantum);
+            background: var(--bg-panel);
+        }
+
+        .time-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--accent-quantum);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        /* COVER SLIDE */
+        .cover-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 550px;
+            border: 1px solid var(--border-color);
+            padding: 60px;
+            background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-dark) 100%);
+            border-radius: 8px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-title {
+            font-size: 3.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .cover-title span {
+            color: var(--accent-quantum);
+        }
+
+        /* CONTROLS BAR */
+        .controls-bar {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 260px;
+            background: var(--bg-panel);
+            border-top: 1px solid var(--border-color);
+            padding: 12px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 90;
+        }
+
+        .btn-nav {
+            background: var(--bg-card);
+            color: var(--text-white);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--accent-quantum);
+            color: #000;
+            border-color: var(--accent-quantum);
+        }
+
+        .slide-counter {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .contact-link {
+            color: var(--accent-quantum);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .main-stage { margin-left: 0; padding: 20px; }
+            .grid-3, .grid-2, .timeline-grid { grid-template-columns: 1fr; }
+            .controls-bar { left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <div class="sidebar">
+        <div class="brand-header">
+            <div class="brand-title">QUANTUM SAILS</div>
+            <div class="brand-subtitle">POLAND // TWOSTAR 2028</div>
+        </div>
+        <div class="nav-item active" onclick="showSlide(0)">01. Start</div>
+        <div class="nav-item" onclick="showSlide(1)">02. Market Vision</div>
+        <div class="nav-item" onclick="showSlide(2)">03. Project Overview</div>
+        <div class="nav-item" onclick="showSlide(3)">04. Media Reach</div>
+        <div class="nav-item" onclick="showSlide(4)">05. Racing Goal</div>
+        <div class="nav-item" onclick="showSlide(5)">06. Technology</div>
+        <div class="nav-item" onclick="showSlide(6)">07. Business & Activation</div>
+        <div class="nav-item" onclick="showSlide(7)">08. Budget & AVE</div>
+        <div class="nav-item" onclick="showSlide(8)">09. Timeline</div>
+        <div class="nav-item" onclick="showSlide(9)">10. Contact</div>
+    </div>
+
+    <!-- MAIN STAGE -->
+    <div class="main-stage">
+
+        <!-- SLIDE 1: COVER -->
+        <div class="slide-container active">
+            <div class="cover-container">
+                <div class="slide-tag">Strategic Partnership Proposal</div>
+                <h1 class="cover-title">QUANTUM SAILS<br><span>POLAND</span></h1>
+                <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; max-width: 650px;">
+                    Official commercial dealership and the TWOSTAR 2028 trans-Atlantic ocean racing campaign.
+                </p>
+                <p style="font-size: 0.95rem; color: var(--accent-quantum); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+                    Capt. Jarosław Pokropiński // Polish Ocean Team
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: MARKET VISION -->
+        <div class="slide-container">
+            <div class="slide-tag">Market Gap & Opportunities</div>
+            <h2 class="slide-title">Quantum Sails Growth Vision in Poland</h2>
+            <p class="slide-subtitle">Building a strong, physical brand presence in one of the fastest-growing sailing markets in Europe.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Polish Market</div>
+                    <p>Thousands of active offshore and racing sailors. The absence of a direct, dedicated Quantum Sails dealership creates a <strong>huge business opportunity</strong> in the Polish marine sector.</p>
+                </div>
+                <div class="card border-quantum">
+                    <div class="card-title">Commercial Objective</div>
+                    <p>Establish a sales & service hub, generate cruising and racing sail sales, and build a market-leading position in the premium segment.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Marketing Leverage</div>
+                    <p>Utilize ocean racing as a real-world testing ground and a powerful media platform to promote sail technologies.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Why Now?</div>
+                <p>The Polish yachting market is growing by double digits annually. Yacht owners are continuously investing in modern racing and cruising boats, demanding advanced membrane technologies and dedicated post-sale support.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: PROJECT OVERVIEW -->
+        <div class="slide-container">
+            <div class="slide-tag">Synergy of Sport and Business</div>
+            <h2 class="slide-title">Merger of Dealership & TWOSTAR Project</h2>
+            <p class="slide-subtitle">Simultaneous growth of the commercial sales channel and an A-class ocean racing campaign.</p>
+
+            <div class="grid-2">
+                <div class="card border-quantum">
+                    <div class="card-title">1. Quantum Sails Dealership</div>
+                    <ul class="card-list">
+                        <li>Exclusive distribution and technical consultancy for Polish yacht owners.</li>
+                        <li>Sail loft service, rating measurements, and rig optimization.</li>
+                        <li>Building partner networks with shipyards and charter companies.</li>
+                    </ul>
+                </div>
+                <div class="card highlight-quantum">
+                    <div class="card-title">2. TWOSTAR 2028 Campaign</div>
+                    <ul class="card-list">
+                        <li>Trans-Atlantic double-handed race (Plymouth, UK – Newport, USA).</li>
+                        <li>Racing on a modern yacht equipped with Quantum Fusion M sails.</li>
+                        <li>Live Starlink broadcasts and extreme condition equipment testing.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: MEDIA REACH -->
+        <div class="slide-container">
+            <div class="slide-tag">Exposure & Media</div>
+            <h2 class="slide-title">Measurable Media Impact</h2>
+            <p class="slide-subtitle">Providing direct engagement with millions of viewers across Europe and the USA.</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="stat-number">10M+</div>
+                    <div class="card-title">Reach in Europe & Poland</div>
+                    <p>Estimated cumulative reach across TV, web, trade press, and social media channels during preparation and race phases.</p>
+                </div>
+                <div class="card border-quantum">
+                    <div class="stat-number">2.75M</div>
+                    <div class="card-title">Reach in the USA</div>
+                    <p>Coverage in US local and national marine media during the race finish line in Newport, Rhode Island, and associated events.</p>
+                </div>
+            </div>
+
+            <div class="card highlight-gold" style="margin-bottom: 20px;">
+                <div class="card-title">🏆 Podium Result Multiplier</div>
+                <p style="font-size: 1.05rem;">
+                    <strong>A podium finish in the TWOSTAR 2028 race triggers a massive media reach multiplier of <span style="color: var(--gold); font-weight: 900; font-size: 1.3rem;">x100</span>!</strong><br>
+                    Finishing in the top three guarantees global coverage by major news agencies, TV sports networks, and international sailing outlets, exponentially raising sponsor AVE.
+                </p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Starlink LIVE Streams</div>
+                    <p>Live video broadcasts directly from onboard during the Atlantic crossing.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Documentary Film</div>
+                    <p>Production of a full-length video feature covering preparations and the race.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">PR & Events</div>
+                    <p>Industry articles, B2B meetings, and presence at major boat shows.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: RACING GOAL -->
+        <div class="slide-container">
+            <div class="slide-tag">Ocean Challenge</div>
+            <h2 class="slide-title">TWOSTAR 2028 Race</h2>
+            <p class="slide-subtitle">Legendary trans-Atlantic race for two-person crews – an endurance and tech test.</p>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Race Route</div>
+                    <p><strong>Plymouth (UK) ➔ Newport (USA)</strong><br>Over 3,000 nautical miles against prevailing winds and currents across the North Atlantic storm tracks.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Format</div>
+                    <p>Doublehanded crew. An extreme tactical, navigational, and physical challenge lasting approx. 18-22 days.</p>
+                </div>
+                <div class="card border-quantum">
+                    <div class="card-title">Racing Objective</div>
+                    <p><strong>Top placement and podium battle</strong> in class, establishing high standards for Polish ocean sailing.</p>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Skipper</strong></td>
+                        <td>Capt. Jarosław Pokropiński (experienced ocean captain)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Yacht</strong></td>
+                        <td>Advanced racing yacht optimized for shorthanded ocean racing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sails</strong></td>
+                        <td>Custom Quantum Sails Fusion M membrane inventory (Carbon/Aramid)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SLIDE 6: TECHNOLOGY -->
+        <div class="slide-container">
+            <div class="slide-tag">Innovation & Performance</div>
+            <h2 class="slide-title">Quantum Fusion M Sail Technology</h2>
+            <p class="slide-subtitle">Patented membrane technology providing a competitive edge in all wind conditions.</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Membrane Technology</div>
+                    <p>Quantum Fusion M sails are custom designed using 3D modeling. Carbon and aramid fibers are aligned precisely along load paths, delivering unmatched shape retention and stretch resistance.</p>
+                </div>
+                <div class="card border-quantum">
+                    <div class="card-title">Oceanic Application</div>
+                    <p>Lightweight and extremely durable, holding optimal aerodynamic profiles over thousands of sea miles to transfer maximum wind power into boat speed.</p>
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Profile & Aerodynamics</div>
+                    <p>Computerized load modeling for perfect shape stability in all conditions.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Laminate Durability</div>
+                    <p>Resistance to UV degradation, salt water corrosion, and repeated reefing.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Extreme Testing</div>
+                    <p>Direct telemetry feedback sent from the Atlantic to Quantum design offices.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: BUSINESS & ACTIVATION -->
+        <div class="slide-container">
+            <div class="slide-tag">Partner Value Proposition</div>
+            <h2 class="slide-title">Sponsorship Packages & Business Activation</h2>
+            <p class="slide-subtitle">Unique opportunities to leverage the project for marketing, B2B, and HR initiatives.</p>
+
+            <div class="grid-3">
+                <div class="card border-quantum">
+                    <div class="card-title">Title Sponsor</div>
+                    <p>Naming rights for the boat and team, dominant logo placement on sails/hull, and exclusive image rights.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Technical Partner</div>
+                    <p>Branding on the yacht, product testing in extreme conditions, and joint R&D story-telling.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Official Partner</div>
+                    <p>Logo placement on team gear, digital media channels, and promotional materials.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">B2B Activation & VIP Program</div>
+                <ul class="card-list">
+                    <li>Corporate sailing days and client integration events.</li>
+                    <li>Keynote speeches by the skipper on risk management, leadership, and resilience under pressure.</li>
+                    <li>High-resolution photo/video assets for internal and external corporate communications.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: BUDGET & AVE -->
+        <div class="slide-container">
+            <div class="slide-tag">Financials & Efficiency</div>
+            <h2 class="slide-title">Project Budget & AVE Valuation (EUR)</h2>
+            <p class="slide-subtitle">Transparent financial planning ensuring high marketing return on investment (ROI).</p>
+
+            <div class="grid-2">
+                <div class="card border-quantum">
+                    <div class="card-title">Project Budget</div>
+                    <div class="stat-number">172,794 EUR</div>
+                    <p>Covers complete yacht preparation, Quantum Fusion M membrane sails, entry fees, trans-Atlantic logistics, and Starlink satellite communications.</p>
+                </div>
+
+                <div class="card highlight-quantum">
+                    <div class="card-title">Estimated Base AVE</div>
+                    <div class="stat-number">828,500 EUR</div>
+                    <p>Standard Advertising Value Equivalency generated across prep campaigns and race coverage in PL, EU, and US media channels.</p>
+                </div>
+            </div>
+
+            <div class="card highlight-gold">
+                <div class="card-title">🏆 Podium AVE Value (x100 Effect)</div>
+                <div style="display: flex; gap: 30px; align-items: center; margin-top: 10px; flex-wrap: wrap;">
+                    <div>
+                        <span style="font-size: 2.5rem; font-weight: 900; color: var(--gold);">82,850,000 EUR</span>
+                    </div>
+                    <p style="flex: 1; min-width: 250px;">
+                        A top-3 finish in TWOSTAR exponentially increases coverage across global wire services (Reuters, AP, BBC, TVP Sport), driving AVE valuations to premier international ocean racing levels.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: TIMELINE -->
+        <div class="slide-container">
+            <div class="slide-tag">Execution Plan</div>
+            <h2 class="slide-title">Implementation Roadmap (2026 - 2028)</h2>
+            <p class="slide-subtitle">Step-by-step roadmap for commercial setup and racing preparation starting from current operations.</p>
+
+            <div class="timeline-grid">
+                <div class="timeline-box active-quantum">
+                    <div class="time-title">STAGE 1 // 2026</div>
+                    <p><strong>Current Setup & Operations</strong><br>Expanding Quantum Sails presence in Poland, securing initial sail orders, and formalizing campaign logistics.</p>
+                </div>
+                <div class="timeline-box">
+                    <div class="time-title">STAGE 2 // 2027 (H1)</div>
+                    <p><strong>Refit & Hardware Testing</strong><br>Racing yacht acquisition and refit, Quantum Fusion M sails delivery, and initial sea trials.</p>
+                </div>
+                <div class="timeline-box">
+                    <div class="time-title">STAGE 3 // 2027 (H2)</div>
+                    <p><strong>Ocean Qualification</strong><br>European qualification races, 1,000M solo/doublehanded qualifier passage, and media campaign launch.</p>
+                </div>
+                <div class="timeline-box active-quantum">
+                    <div class="time-title">STAGE 4 // 2028</div>
+                    <p><strong>TWOSTAR 2028 START</strong><br>Start from Plymouth, live satellite ocean broadcasts, finish line in Newport (USA), and media activation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: CONTACT -->
+        <div class="slide-container">
+            <div class="slide-tag">Get Onboard</div>
+            <h2 class="slide-title">Join the Project</h2>
+            <p class="slide-subtitle">Partner with us in building Quantum Sails Poland and launching the historic TWOSTAR 2028 campaign.</p>
+
+            <div class="grid-2">
+                <div class="card border-quantum">
+                    <div class="card-title">Direct Contact</div>
+                    <p style="margin-bottom: 12px;"><strong>Polish Ocean Team / Quantum Sails Poland</strong></p>
+                    <p style="margin-bottom: 8px;"><strong>Project Lead:</strong> Capt. Jarosław Pokropiński</p>
+                    <p style="margin-bottom: 8px;"><strong>E-mail:</strong> <a href="mailto:fundacja.pot@gmail.com" class="contact-link">fundacja.pot@gmail.com</a></p>
+                    <p style="margin-bottom: 8px;"><strong>Facebook:</strong> <a href="https://www.facebook.com/profile.php?id=100064689789375" target="_blank" rel="noopener" class="contact-link">Polish Ocean Team (FB Page)</a></p>
+                </div>
+
+                <div class="card highlight-quantum">
+                    <div class="card-title">Why Partner With Us?</div>
+                    <p>Combining a commercial distribution dealership with a high-exposure trans-Atlantic ocean racing campaign creates a powerful marketing platform for your brand.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CONTROLS BAR -->
+    <div class="controls-bar">
+        <button class="btn-nav" onclick="prevSlide()">◄ Previous</button>
+        <div class="slide-counter" id="slideCounter">Slide 1 of 10</div>
+        <button class="btn-nav" onclick="nextSlide()">Next ►</button>
+    </div>
+
+    <script>
+        var currentSlide = 0;
+        var slides = [];
+        var navItems = [];
+        var counter = null;
+
+        function updateSlideDisplay(index) {
+            if (!slides || slides.length === 0) return;
+            
+            if (index < 0) index = 0;
+            if (index >= slides.length) index = slides.length - 1;
+
+            for (var i = 0; i < slides.length; i++) {
+                if (i === index) {
+                    slides[i].classList.add('active');
+                } else {
+                    slides[i].classList.remove('active');
+                }
+            }
+
+            for (var j = 0; j < navItems.length; j++) {
+                if (j === index) {
+                    navItems[j].classList.add('active');
+                } else {
+                    navItems[j].classList.remove('active');
+                }
+            }
+
+            currentSlide = index;
+            if (counter) {
+                counter.innerText = 'Slide ' + (currentSlide + 1) + ' of ' + slides.length;
+            }
+        }
+
+        function showSlide(index) {
+            updateSlideDisplay(index);
+            window.scrollTo(0, 0);
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function initPresentation() {
+            slides = document.querySelectorAll('.slide-container');
+            navItems = document.querySelectorAll('.nav-item');
+            counter = document.getElementById('slideCounter');
+            updateSlideDisplay(0);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPresentation);
+        } else {
+            initPresentation();
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>
