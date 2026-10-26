@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pl" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polish Ocean Team x HENRI-LLOYD – Prezentacja Sponsorska 2026</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nke: {
+                            cyan: '#00d2ff',
+                            blue: '#0072ff',
+                            dark: '#060a12',
+                            panel: '#0d1527',
+                            border: '#1a2744',
+                            accent: '#ffb703',
+                            hl: '#d4af37' // Klasyczne złoto / crown Henri-Lloyd
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #060a12;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.35s ease-in-out;
+        }
+        
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .nke-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        }
+
+        .nke-border-glow {
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(0, 210, 255, 0.12) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060a12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a2744;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col justify-between bg-grid-pattern text-slate-200 antialiased selection:bg-nke-hl selection:text-nke-dark">
+
+    <!-- NAGŁÓWEK -->
+    <header class="h-16 border-b border-nke-border bg-nke-panel/90 backdrop-blur-md px-4 lg:px-8 flex items-center justify-between z-30 shrink-0">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-amber-600 to-yellow-400 flex items-center justify-center font-black text-nke-dark text-lg shadow-lg shadow-nke-hl/30 tracking-tighter">
+                HL
+            </div>
+            <div>
+                <h1 class="font-bold text-sm lg:text-base tracking-wide text-white uppercase">HENRI-LLOYD <span class="text-nke-cyan">x POLISH OCEAN TEAM</span></h1>
+                <p class="text-xs text-slate-400">Jacht BC950 | Stan na: Październik 2026 r.</p>
+            </div>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-6 text-sm">
+            <div class="flex items-center space-x-2 bg-nke-dark/80 border border-nke-border px-3 py-1.5 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-xs text-slate-300">Hasło: <strong class="text-nke-hl">"PIONEERS OF OCEANWEAR"</strong></span>
+            </div>
+            <div class="text-xs text-slate-400">
+                Trasa: <span class="text-nke-cyan font-semibold">Plymouth (UK) ➔ Newport (USA)</span>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-2">
+            <span id="slide-indicator" class="text-xs font-mono bg-nke-dark border border-nke-border px-3 py-1.5 rounded-md text-nke-cyan">
+                SLAJD 1 / 9
+            </span>
+            <button id="fullscreen-btn" onclick="toggleFullscreen()" class="p-2 text-slate-400 hover:text-nke-cyan hover:bg-nke-border/50 rounded-lg transition" title="Tryb pełnoekranowy">
+                <i class="fa-solid fa-expand text-lg"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- GŁÓWNY OBSZAR ROBOCZY -->
+    <div class="flex-1 flex overflow-hidden relative">
+
+        <!-- PANEL BOCZNY (NAWIGACJA) -->
+        <aside id="sidebar" class="w-72 border-r border-nke-border bg-nke-panel/90 flex flex-col justify-between shrink-0 transition-all duration-300 z-20 hidden md:flex">
+            <div class="p-4 overflow-y-auto space-y-1">
+                <div class="text-[10px] uppercase tracking-wider font-bold text-slate-500 px-3 mb-2">Spis Slajdów (9 Slajdów)</div>
+                
+                <button onclick="goToSlide(0)" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center space-x-3 transition active bg-nke-border/60 text-nke-cyan border-l-2 border-nke-cyan">
+                    <span class="w-6 h-6 rounded bg-nke-dark flex items-center justify-center text-[10px] font-bold">01</span>
+                    <span class="truncate">Strona Tytułowa</span>
+                </button>
+
+                <button onclick="goToSlide(1)" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center space-x-3 transition text-slate-400 hover:text-white hover:bg-nke-border/30">
+                    <span class="w-6 h-6 rounded bg-nke-dark flex items-center justify-center text-[10px] font-bold">02</span>
+                    <span class="truncate">Trasa Wyścigu & Wyzwania</span>
+                </button>
+
+                <button onclick="goToSlide(2)" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center space-x-3 transition text-slate-400 hover:text-white hover:bg-nke-border/30">
+                    <span class="w-6 h-6 rounded bg-nke-dark flex items-center justify-center text-[10px] font-bold">03</span>
+                    <span class="truncate">Taktyka BC950: Ślizg vs Halsówka</span>
+                </button>
+
+                <button onclick="goToSlide(3)" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center space-x-3 transition text-slate-400 hover:text-white hover:bg-nke-border/30">
+                    <span class="w-6 h-6 rounded bg-nke-dark flex items-center justify-center text-[10px] font-bold">04</span>
+                    <span class="truncate">Udokumentowane Zasięgi</span>
+                </button>
+
+                <button onclick="goToSlide(4)" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center space-x-3 transition text-slate-400 hover:text-white hover:bg-nke-border/30">
+                    <span class="w-6 h-6 rounded bg-nke-dark flex items-center justify-center text-[10px] font-bold">05</span>
+                    <span class="truncate">Efekt Podium (Mnożnik x100)</span>
+                </button>
+
+                <button onclick="goToSlide(5)" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center space-x-3 transition text-slate-400 hover:text-white hover:bg-nke-border/30">
+                    <span class="w-6 h-6 rounded bg-nke-dark flex items-center justify-center text-[10px] font-bold">06</span>
+                    <span class="truncate">Synergia HENRI-LLOYD</span>
+                </button>
+
+                <button onclick="goToSlide(6)" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center space-x-3 transition text-slate-400 hover:text-white hover:bg-nke-border/30">
+                    <span class="w-6 h-6 rounded bg-nke-dark flex items-center justify-center text-[10px] font-bold">07</span>
+                    <span class="truncate">Aktywacja w Salonach & Online</span>
+                </button>
+
+                <button onclick="goToSlide(7)" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center space-x-3 transition text-slate-400 hover:text-white hover:bg-nke-border/30">
+                    <span class="w-6 h-6 rounded bg-nke-dark flex items-center justify-center text-[10px] font-bold">08</span>
+                    <span class="truncate">Kalkulator AVE / ROI</span>
+                </button>
+
+                <button onclick="goToSlide(8)" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center space-x-3 transition text-slate-400 hover:text-white hover:bg-nke-border/30">
+                    <span class="w-6 h-6 rounded bg-nke-dark flex items-center justify-center text-[10px] font-bold">09</span>
+                    <span class="truncate">Pakiety Sponsorskie & Kontakt</span>
+                </button>
+            </div>
+
+            <div class="p-4 border-t border-nke-border bg-nke-dark/40 text-center">
+                <div class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Projekt Oceaniczny</div>
+                <div class="text-xs font-bold text-nke-hl flex items-center justify-center gap-1.5 mt-1">
+                    <i class="fa-solid fa-anchor text-nke-cyan"></i> POLISH OCEAN TEAM • BC950
+                </div>
+            </div>
+        </aside>
+
+        <!-- TREŚĆ SLAJDÓW -->
+        <main class="flex-1 overflow-y-auto p-4 lg:p-8 flex flex-col justify-center items-center">
+            
+            <!-- SLAJD 1 -->
+            <div class="slide active w-full max-w-5xl flex-col justify-center items-center text-center py-6">
+                <div class="inline-flex items-center space-x-2 bg-nke-panel border border-nke-hl/40 px-4 py-2 rounded-full mb-6">
+                    <span class="w-2.5 h-2.5 rounded-full bg-nke-hl animate-ping"></span>
+                    <span class="text-xs font-bold tracking-wider text-white uppercase">Oferta Partnerska HENRI-LLOYD • Październik 2026 r.</span>
+                </div>
+                
+                <h1 class="text-4xl lg:text-6xl font-black tracking-tight text-white uppercase mb-4">
+                    POLISH OCEAN TEAM <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-nke-hl via-yellow-200 to-nke-cyan">x HENRI-LLOYD</span>
+                </h1>
+                
+                <p class="text-lg lg:text-xl text-slate-300 max-w-3xl mb-8 leading-relaxed">
+                    Oceaniczna kampania transatlantycka na nowoczesnym jachcie <strong class="text-white">BC950</strong> oparta na dziedzictwie <span class="text-nke-hl font-bold">"PIONEERS OF TECHNICAL OCEANWEAR"</span>. Ekstremalne żeglarstwo ślizgowe pod legendarnym symbolem Korony Henri-Lloyd.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl mb-8">
+                    <div class="bg-nke-panel border border-nke-border p-4 rounded-xl text-center">
+                        <i class="fa-solid fa-compass-drafting text-2xl text-nke-cyan mb-2"></i>
+                        <div class="text-xs text-slate-400">Trasa Transatlantyku</div>
+                        <div class="text-sm font-bold text-white">Plymouth ➔ Newport</div>
+                    </div>
+                    <div class="bg-nke-panel border border-nke-border p-4 rounded-xl text-center">
+                        <i class="fa-solid fa-chart-line text-2xl text-nke-accent mb-2"></i>
+                        <div class="text-xs text-slate-400">Zasięg Bazowy (EU/USA)</div>
+                        <div class="text-sm font-bold text-white">+14,6 Miliona Odbiorców</div>
+                    </div>
+                    <div class="bg-nke-panel border border-nke-border p-4 rounded-xl text-center">
+                        <i class="fa-solid fa-crown text-2xl text-nke-hl mb-2"></i>
+                        <div class="text-xs text-slate-400">Mnożnik Podium</div>
+                        <div class="text-sm font-bold text-nke-accent">x100 Wzrost Ekspozycji</div>
+                    </div>
+                </div>
+
+                <button onclick="goToSlide(1)" class="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-nke-dark font-black px-8 py-3.5 rounded-xl shadow-lg shadow-nke-hl/20 hover:scale-105 transition">
+                    Rozpocznij Prezentację <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+
+            <!-- SLAJD 2 -->
+            <div class="slide w-full max-w-5xl flex-col justify-between py-4 space-y-6">
+                <div>
+                    <div class="text-xs font-bold text-nke-hl uppercase tracking-wider mb-1">Slajd 02</div>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">TRASA WYŚCIGU I EKSTREMALNE WYZWANIA REGATOWE</h2>
+                    <p class="text-sm text-slate-400">Północny Atlantyk: Sprawdzian ludzkiej woli i odzieży morskiej HENRI-LLOYD Elite & M-Pro.</p>
+                </div>
+
+                <div class="bg-nke-panel border border-nke-hl/40 p-5 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-4 nke-border-glow">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-nke-hl/20 border border-nke-hl flex items-center justify-center text-nke-hl text-2xl">
+                            <i class="fa-solid fa-route"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400">Główny Szlak Regatowy Transatlantyku</div>
+                            <div class="text-lg font-bold text-white">Plymouth (Wielka Brytania) ➔ Newport, Rhode Island (USA)</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs text-slate-400">Dystans Minimalny</div>
+                        <div class="text-2xl font-black text-nke-accent">+3 000 Mm</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-nke-panel border border-nke-border p-5 rounded-xl space-y-3">
+                        <div class="flex items-center space-x-3 text-red-400 font-bold text-sm">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>Zagrożenia Meteorologiczne & Hipotermia</span>
+                        </div>
+                        <ul class="text-xs text-slate-300 space-y-2">
+                            <li class="flex items-start"><i class="fa-solid fa-caret-right text-nke-hl mr-2 mt-0.5"></i> <strong>Sztormy Północnego Atlantyku:</strong> Fale przekraczające 8–10 metrów, nieprzerwane zalewanie pokładu i porywy >50 węzłów.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-caret-right text-nke-hl mr-2 mt-0.5"></i> <strong>Ochrona Przed Hipotermią:</strong> Trzywarstwowe membrany Henri-Lloyd chronią skippera przed lodowatym oceanem.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-caret-right text-nke-hl mr-2 mt-0.5"></i> <strong>Rejon Nowofundlandzki:</strong> Długotrwała praca w wilgotności 100% przy ujemnych temperaturach odczuwalnych.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-nke-panel border border-nke-border p-5 rounded-xl space-y-3">
+                        <div class="flex items-center space-x-3 text-nke-cyan font-bold text-sm">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Ekstremalny Test Technologii HENRI-LLOYD</span>
+                        </div>
+                        <ul class="text-xs text-slate-300 space-y-2">
+                            <li class="flex items-start"><i class="fa-solid fa-caret-right text-nke-cyan mr-2 mt-0.5"></i> <strong>Prędkość i Woda na Pokładzie:</strong> Konstrukcja BC950 tnie fale przy 20+ kn – ciągłe ciśnienie wody na sztormiak.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-caret-right text-nke-cyan mr-2 mt-0.5"></i> <strong>Ergonomia w Ślizgu:</strong> Seria HL Elite zapewnia bezkompromisową swobodę ruchów i optymalną wagę.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-caret-right text-nke-cyan mr-2 mt-0.5"></i> <strong>Potwierdzenie Pionierskości:</strong> Najwyższy sprawdzian trwałości i wodoszczelności morskiego ekwipunku HL.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLAJD 3 -->
+            <div class="slide w-full max-w-5xl flex-col justify-between py-4 space-y-6">
+                <div>
+                    <div class="text-xs font-bold text-nke-hl uppercase tracking-wider mb-1">Slajd 03</div>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">STRATEGIA TAKTYCZNA BC950: TRASA POŁUDNIOWA (ŚLIZG) VS PÓŁNOCNA</h2>
+                    <p class="text-sm text-slate-400">Dla wyczynowej jednostki BC950 odpowiedni wybór trajektorii decyduje o osiąganiu ciągłego hydroplaningu.</p>
+                </div>
+
+                <!-- Interactive Switch Box -->
+                <div class="bg-nke-panel border border-nke-border p-6 rounded-2xl space-y-6">
+                    <div class="flex justify-center space-x-4">
+                        <button id="btn-south" onclick="setRoute('south')" class="px-6 py-2.5 rounded-xl text-xs font-bold transition bg-nke-hl text-nke-dark shadow-lg shadow-nke-hl/20">
+                            <i class="fa-solid fa-sun mr-2"></i> Wariant Południowy (ŚLIZG & SZYBKOŚĆ BC950)
+                        </button>
+                        <button id="btn-north" onclick="setRoute('north')" class="px-6 py-2.5 rounded-xl text-xs font-bold transition bg-nke-dark text-slate-400 hover:text-white border border-nke-border">
+                            <i class="fa-solid fa-snowflake mr-2"></i> Wariant Północny (Ortodroma / Halsówka)
+                        </button>
+                    </div>
+
+                    <div id="route-details" class="bg-nke-dark border border-nke-border p-5 rounded-xl space-y-3">
+                        <div id="route-title" class="text-base font-bold text-nke-hl flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-nke-accent"></i> Trasa Południowa – Zoptymalizowana pod Ślizg Kadłuba BC950
+                        </div>
+                        <p id="route-desc" class="text-xs text-slate-300 leading-relaxed">
+                            Wykorzystanie kursów bakstagowych w pasatach i wyżu azorskim. Kadłub BC950 wchodzi w ciągły hydroplaning (ślizg), osiągając prędkości 16–22+ węzłów. Odzież HENRI-LLOYD M-Pro / Fremantle gwarantuje znakomitą oddychalność i ochronę przed promieniowaniem UV oraz bryzgami solanki podczas intensywnej pracy na pokładzie.
+                        </p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2 text-center text-xs">
+                            <div class="bg-nke-panel p-2.5 rounded-lg border border-nke-border">
+                                <span class="block text-slate-400 text-[10px]">Tryb Żeglugi BC950</span>
+                                <strong id="r-stat1" class="text-nke-cyan font-bold">Ciągły Ślizg (Planing)</strong>
+                            </div>
+                            <div class="bg-nke-panel p-2.5 rounded-lg border border-nke-border">
+                                <span class="block text-slate-400 text-[10px]">Średnia Prędkość</span>
+                                <strong id="r-stat2" class="text-emerald-400 font-bold">Bardzo Wysoka (16-22+ kn)</strong>
+                            </div>
+                            <div class="bg-nke-panel p-2.5 rounded-lg border border-nke-border">
+                                <span class="block text-slate-400 text-[10px]">Dystans Rzeczywisty</span>
+                                <strong id="r-stat3" class="text-white font-bold">~3 380 Mm</strong>
+                            </div>
+                            <div class="bg-nke-panel p-2.5 rounded-lg border border-nke-border">
+                                <span class="block text-slate-400 text-[10px]">Potencjał Zwycięstwa</span>
+                                <strong id="r-stat4" class="text-nke-accent font-bold">Optymalny (Najkrótszy Czas)</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLAJD 4 -->
+            <div class="slide w-full max-w-5xl flex-col justify-between py-4 space-y-6">
+                <div>
+                    <div class="text-xs font-bold text-nke-hl uppercase tracking-wider mb-1">Slajd 04</div>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">UDOKUMENTOWANE ZASIĘGI ORGANICZNE (STAN NA X 2026 R.)</h2>
+                    <p class="text-sm text-slate-400">Dotychczasowe wyniki kampanii medialnej Polish Ocean Team przed startem transatlantyku.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-nke-panel border border-nke-hl/40 p-6 rounded-2xl text-center space-y-2 nke-glow">
+                        <i class="fa-solid fa-earth-europe text-4xl text-nke-hl mb-2"></i>
+                        <div class="text-3xl font-black text-white">+10 000 000</div>
+                        <div class="text-xs font-bold text-nke-hl uppercase tracking-wider">Europa / UK</div>
+                        <p class="text-[11px] text-slate-400">Organiczne wyświetlenia treści wideo, relacji i artykułów w prasie brytyjskiej i europejskiej.</p>
+                    </div>
+
+                    <div class="bg-nke-panel border border-nke-border p-6 rounded-2xl text-center space-y-2">
+                        <i class="fa-solid fa-flag-usa text-4xl text-nke-accent mb-2"></i>
+                        <div class="text-3xl font-black text-white">+2 750 000</div>
+                        <div class="text-xs font-bold text-nke-accent uppercase tracking-wider">Stany Zjednoczone</div>
+                        <p class="text-[11px] text-slate-400">Zasięg generowany w mediach amerykańskich w związku z metą regat w Newport, RI.</p>
+                    </div>
+
+                    <div class="bg-nke-panel border border-nke-border p-6 rounded-2xl text-center space-y-2">
+                        <i class="fa-solid fa-sailboat text-4xl text-nke-cyan mb-2"></i>
+                        <div class="text-3xl font-black text-white">+1 860 000</div>
+                        <div class="text-xs font-bold text-nke-cyan uppercase tracking-wider">Francja (Kolebka Żeglarstwa)</div>
+                        <p class="text-[11px] text-slate-400">Dotarcie do liderów i kibiców w sercu wyczynowego żeglarstwa oceanicznego.</p>
+                    </div>
+                </div>
+
+                <div class="bg-nke-dark border border-nke-border p-4 rounded-xl flex items-center justify-between text-xs">
+                    <span class="text-slate-400"><i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i> Łączny Dotychczasowy Zasięg Organiczny Projektu:</span>
+                    <span class="text-base font-black text-nke-hl">+14 610 000 Unikalnych Odbiorców</span>
+                </div>
+            </div>
+
+            <!-- SLAJD 5 -->
+            <div class="slide w-full max-w-5xl flex-col justify-between py-4 space-y-6">
+                <div>
+                    <div class="text-xs font-bold text-nke-hl uppercase tracking-wider mb-1">Slajd 05</div>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">EFEKT PODIUM I SKALOWANIE EKSPOZYCJI MARKI</h2>
+                    <p class="text-sm text-slate-400">Jak sukces sportowy na BC950 przekłada się na globalne zwielokrotnienie ekwiwalentu reklamowego HENRI-LLOYD.</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-nke-panel via-nke-dark to-nke-panel border-2 border-nke-hl p-8 rounded-2xl text-center space-y-4 relative overflow-hidden shadow-2xl">
+                    <div class="absolute -right-12 -bottom-12 text-nke-hl/10 text-9xl font-black">x100</div>
+                    
+                    <div class="inline-block bg-nke-hl/20 border border-nke-hl text-nke-hl px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                        Mnożnik Wzrostu Wartości Medialnej
+                    </div>
+
+                    <div class="text-6xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-nke-hl via-yellow-200 to-nke-cyan">
+                        MNOŻNIK x100
+                    </div>
+
+                    <p class="text-sm lg:text-base text-slate-200 max-w-2xl mx-auto leading-relaxed">
+                        Wywalczenie miejsca na podium na Północnym Atlantyku generuje globalne depesze prasowe i telewizyjne (BBC, Sky Sports, L'Équipe, Polsat Sport), dając <strong class="text-nke-hl">100-krotny wzrost wartości ekwiwalentu reklamowego (AVE)</strong> w porównaniu do standardowej kampanii.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl mx-auto pt-4 text-left text-xs">
+                        <div class="bg-nke-dark/80 p-3 rounded-lg border border-nke-border">
+                            <span class="text-slate-400">Transmisja ze Mety w Newport:</span>
+                            <div class="font-bold text-white mt-1">Ekspozycja logo HENRI-LLOYD w prime-time</div>
+                        </div>
+                        <div class="bg-nke-dark/80 p-3 rounded-lg border border-nke-border">
+                            <span class="text-slate-400">Konferencja Prasowa Zwycięzców:</span>
+                            <div class="font-bold text-nke-hl mt-1">Skipper w koronie HENRI-LLOYD na podium</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLAJD 6 -->
+            <div class="slide w-full max-w-5xl flex-col justify-between py-4 space-y-6">
+                <div>
+                    <div class="text-xs font-bold text-nke-hl uppercase tracking-wider mb-1">Slajd 06</div>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">SYNERGIA MARKI HENRI-LLOYD: PIONEERS OF OCEANWEAR</h2>
+                    <p class="text-sm text-slate-400">Wykorzystanie autentycznych materiałów wideo z ekstremalnych warunków do budowy autorytetu marki.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-nke-panel border border-nke-border p-6 rounded-2xl space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-nke-hl/20 border border-nke-hl flex items-center justify-center text-nke-hl text-2xl">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Seria Wideo: "Ocean Pioneers on the Atlantic"</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Ekskluzywna seria nagrań z pokładu BC950 ukazująca pracę skippera w 10-metrowych falach Atlantyku. Pokazanie jak innowacyjna konstrukcja Henri-Lloyd Elite i technologia Dri Fast chronią przed sztormem i gwarantują 100% suchości w wyczynowym ślizgu.
+                        </p>
+                        <div class="bg-nke-dark p-3 rounded-lg border border-nke-border text-[11px] text-nke-hl font-mono">
+                            #HenriLloyd #PioneersOfOceanwear #HLElite #BC950
+                        </div>
+                    </div>
+
+                    <div class="bg-nke-panel border border-nke-border p-6 rounded-2xl space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-nke-cyan/20 border border-nke-cyan flex items-center justify-center text-nke-cyan text-2xl">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Legendarny Korona HL w Praktyce</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Mocny przekaz do klientów marki: Skoro sztormiaki i kurtki Henri-Lloyd wytrzymują ekstremalny kataklizm na oceanie podczas wyścigu transatlantyckiego, z łatwością zapewnią Ci elegancki styl, ciepło i suchość w każdym rejsie i na lądzie.
+                        </p>
+                        <div class="bg-nke-dark p-3 rounded-lg border border-nke-border text-[11px] text-nke-cyan font-mono">
+                            Ugruntowanie Pozycji Lidera Odzieży Żeglarskiej Premium
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLAJD 7 -->
+            <div class="slide w-full max-w-5xl flex-col justify-between py-4 space-y-6">
+                <div>
+                    <div class="text-xs font-bold text-nke-hl uppercase tracking-wider mb-1">Slajd 07</div>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">AKTYWACJA W SALONACH HENRI-LLOYD & KANAŁACH ONLINE</h2>
+                    <p class="text-sm text-slate-400">Bezpośrednie połączenie emocji oceanicznych regat z salonami flagowymi i sklepem internetowym.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-nke-panel border border-nke-border p-5 rounded-xl space-y-3">
+                        <div class="text-nke-hl font-extrabold text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-tv"></i> Live-Tracking w Salonach HL
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Interaktywne ekrany w flagowych sklepach Henri-Lloyd wyświetlające w czasie rzeczywistym pozycję jachtu Polish Ocean Team, aktualną prędkość w ślizgu oraz sytuację pogodową na Atlantyku.
+                        </p>
+                    </div>
+
+                    <div class="bg-nke-panel border border-nke-border p-5 rounded-xl space-y-3">
+                        <div class="text-nke-cyan font-extrabold text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-qrcode"></i> Dedykowane Tagowanie POS
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Materiały POS przy kolekcjach Elite, M-Pro oraz Fremantle zawierające kody QR prowadzące do nagrań wideo ze sztormu, w których skipper używa dokładnie tej linii odzieży.
+                        </p>
+                    </div>
+
+                    <div class="bg-nke-panel border border-nke-border p-5 rounded-xl space-y-3">
+                        <div class="text-nke-accent font-extrabold text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-users"></i> Program HL Club & VIP Events
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Ekskluzywne newslettery dla klubowiczów, konkursy z nagrodami (spotkanie ze skipperem po powrocie) oraz prywatne pokazy nowej kolekcji połączone z prelekcją technologiczną.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLAJD 8 -->
+            <div class="slide w-full max-w-5xl flex-col justify-between py-4 space-y-6">
+                <div>
+                    <div class="text-xs font-bold text-nke-hl uppercase tracking-wider mb-1">Slajd 08</div>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">INTERAKTYWNY KALKULATOR EKWIWALENTU MEDIALNEGO (AVE)</h2>
+                    <p class="text-sm text-slate-400">Symulacja wartości ekwiwalentu reklamowego HENRI-LLOYD w zależności od budżetu.</p>
+                </div>
+
+                <div class="bg-nke-panel border border-nke-hl/30 p-6 rounded-2xl space-y-6">
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs font-bold">
+                            <span class="text-slate-300">Wybierz Budżet Sponsorski:</span>
+                            <span id="budget-val" class="text-nke-hl text-base font-mono">174 532 EUR</span>
+                        </div>
+                        <input type="range" id="budget-slider" min="50000" max="500000" step="1000" value="174532" oninput="updateCalculator()" class="w-full accent-nke-hl bg-nke-dark h-2 rounded-lg cursor-pointer">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                        <div class="bg-nke-dark border border-nke-border p-5 rounded-xl text-center space-y-1">
+                            <div class="text-xs text-slate-400 uppercase">Szacowany AVE (Rejs Standardowy)</div>
+                            <div id="ave-base" class="text-2xl lg:text-3xl font-black text-nke-cyan">963 940 EUR</div>
+                            <div class="text-[10px] text-slate-500">Zwrot z inwestycji: ~5.5x</div>
+                        </div>
+
+                        <div class="bg-nke-dark border border-nke-hl/50 p-5 rounded-xl text-center space-y-1 relative">
+                            <div class="text-xs text-nke-hl font-bold uppercase">Szacowany AVE (Efekt Podium x100)</div>
+                            <div id="ave-podium" class="text-3xl lg:text-4xl font-black text-nke-hl">96 394 000 EUR</div>
+                            <div class="text-[10px] text-slate-400">Maksymalne skalowanie globalne</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLAJD 9 -->
+            <div class="slide w-full max-w-5xl flex-col justify-between py-4 space-y-6">
+                <div>
+                    <div class="text-xs font-bold text-nke-hl uppercase tracking-wider mb-1">Slajd 09 (Ostatnia Strona)</div>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">PAKIETY SPONSORSKIE I KONTAKT Z ZESPOŁEM</h2>
+                    <p class="text-sm text-slate-400">Dołącz do projektu regatowego Polish Ocean Team w sezonie 2026 r.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-nke-panel border border-nke-hl/80 p-5 rounded-xl space-y-2">
+                        <div class="text-xs font-bold text-nke-hl uppercase">Sponsor Tytularny</div>
+                        <div class="text-lg font-black text-white">Henri-Lloyd Ocean Team</div>
+                        <ul class="text-[11px] text-slate-300 space-y-1 pt-2">
+                            <li>• Pełna wyłączność w branży odzieżowej</li>
+                            <li>• Branding wyłączny na żaglach głównych</li>
+                            <li>• Nazwa zespołu w rejestrach regatowych</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-nke-panel border border-nke-cyan/60 p-5 rounded-xl space-y-2">
+                        <div class="text-xs font-bold text-nke-cyan uppercase">Sponsor Główny</div>
+                        <div class="text-lg font-black text-white">Henri-Lloyd Technologia</div>
+                        <ul class="text-[11px] text-slate-300 space-y-1 pt-2">
+                            <li>• Wyłączność wyposażenia sztormowego</li>
+                            <li>• Duże logo na kadłubie jachtu BC950</li>
+                            <li>• Oficjalna kampania "Ocean Pioneers"</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-nke-panel border border-nke-border p-5 rounded-xl space-y-2">
+                        <div class="text-xs font-bold text-slate-400 uppercase">Partner Techniczny</div>
+                        <div class="text-lg font-black text-white">Dostawca Odzieży</div>
+                        <ul class="text-[11px] text-slate-300 space-y-1 pt-2">
+                            <li>• Testy sprzętu w najcięższym sztormie</li>
+                            <li>• Dostęp do materiałów foto/wideo</li>
+                            <li>• Wspólne komunikaty prasowe</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-nke-panel via-nke-dark to-nke-panel border border-nke-hl p-6 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="space-y-1 text-center md:text-left">
+                        <div class="text-lg font-black text-white">POLISH OCEAN TEAM</div>
+                        <div class="text-xs text-slate-400">Kontakt dla Sponsora Henri-Lloyd: kpt. Jarosław Pokropiński</div>
+                        <div class="text-xs text-nke-cyan font-mono">email: fundacja.pot@gmail.com</div>
+                    </div>
+                    <button onclick="goToSlide(0)" class="bg-nke-hl text-nke-dark font-black px-6 py-2.5 rounded-xl text-xs hover:bg-yellow-400 transition shrink-0">
+                        <i class="fa-solid fa-rotate-left mr-1"></i> Wróć do Początku
+                    </button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- STOPKA -->
+    <footer class="h-16 border-t border-nke-border bg-nke-panel/90 backdrop-blur-md px-4 lg:px-8 flex items-center justify-between shrink-0 z-30">
+        <button id="prev-btn" onclick="changeSlide(-1)" class="bg-nke-dark border border-nke-border hover:border-nke-hl text-slate-300 hover:text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2">
+            <i class="fa-solid fa-chevron-left"></i> Poprzedni
+        </button>
+
+        <div class="flex items-center space-x-1.5" id="dots-container">
+            <!-- Dynamiczne kropki -->
+        </div>
+
+        <button id="next-btn" onclick="changeSlide(1)" class="bg-nke-hl text-nke-dark hover:bg-yellow-400 font-extrabold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2 shadow-md shadow-nke-hl/20">
+            Następny <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </footer>
+
+    <!-- SKRYPT LOGIKI PREZENTACJI -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const slideIndicator = document.getElementById('slide-indicator');
+        const dotsContainer = document.getElementById('dots-container');
+
+        function initDots() {
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.className = `w-2.5 h-2.5 rounded-full transition-all ${idx === 0 ? 'bg-nke-hl w-6' : 'bg-nke-border hover:bg-slate-400'}`;
+                dot.onclick = () => goToSlide(idx);
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateSlides() {
+            slides.forEach((slide, idx) => {
+                if (idx === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            navBtns.forEach((btn, idx) => {
+                if (idx === currentSlide) {
+                    btn.className = "nav-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center space-x-3 transition bg-nke-border/60 text-nke-hl border-l-2 border-nke-hl font-bold";
+                } else {
+                    btn.className = "nav-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-medium flex items-center space-x-3 transition text-slate-400 hover:text-white hover:bg-nke-border/30";
+                }
+            });
+
+            slideIndicator.textContent = `SLAJD ${currentSlide + 1} / ${slides.length}`;
+
+            const dots = dotsContainer.children;
+            Array.from(dots).forEach((dot, idx) => {
+                if (idx === currentSlide) {
+                    dot.className = "w-6 h-2.5 rounded-full bg-nke-hl transition-all";
+                } else {
+                    dot.className = "w-2.5 h-2.5 rounded-full bg-nke-border hover:bg-slate-400 transition-all";
+                }
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            updateSlides();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlides();
+        }
+
+        function setRoute(type) {
+            const btnNorth = document.getElementById('btn-north');
+            const btnSouth = document.getElementById('btn-south');
+            const routeTitle = document.getElementById('route-title');
+            const routeDesc = document.getElementById('route-desc');
+            const stat1 = document.getElementById('r-stat1');
+            const stat2 = document.getElementById('r-stat2');
+            const stat3 = document.getElementById('r-stat3');
+            const stat4 = document.getElementById('r-stat4');
+
+            if (type === 'south') {
+                btnSouth.className = "px-6 py-2.5 rounded-xl text-xs font-bold transition bg-nke-hl text-nke-dark shadow-lg shadow-nke-hl/20";
+                btnNorth.className = "px-6 py-2.5 rounded-xl text-xs font-bold transition bg-nke-dark text-slate-400 hover:text-white border border-nke-border";
+                routeTitle.innerHTML = '<i class="fa-solid fa-bolt text-nke-accent"></i> Trasa Południowa – Zoptymalizowana pod Ślizg Kadłuba BC950';
+                routeDesc.textContent = "Wykorzystanie kursów bakstagowych w pasatach i wyżu azorskim. Kadłub BC950 wchodzi w ciągły hydroplaning (ślizg), osiągając prędkości 16–22+ węzłów. Odzież HENRI-LLOYD M-Pro / Fremantle gwarantuje znakomitą oddychalność i ochronę przed promieniowaniem UV oraz bryzgami solanki podczas intensywnej pracy na pokładzie.";
+                stat1.textContent = "Ciągły Ślizg (Planing)";
+                stat1.className = "text-nke-cyan font-bold";
+                stat2.textContent = "Bardzo Wysoka (16-22+ kn)";
+                stat2.className = "text-emerald-400 font-bold";
+                stat3.textContent = "~3 380 Mm";
+                stat4.textContent = "Optymalny (Najkrótszy Czas)";
+            } else {
+                btnNorth.className = "px-6 py-2.5 rounded-xl text-xs font-bold transition bg-nke-hl text-nke-dark shadow-lg shadow-nke-hl/20";
+                btnSouth.className = "px-6 py-2.5 rounded-xl text-xs font-bold transition bg-nke-dark text-slate-400 hover:text-white border border-nke-border";
+                routeTitle.innerHTML = '<i class="fa-solid fa-snowflake"></i> Wariant Północny – Krótki Dystans, ale Ostra Halsówka i Pounding';
+                routeDesc.textContent = "Żegluga łukiem koła wielkiego. Krótszy dystans na mapie, ale wymusza dłuższą żeglugę pod wiatr i strome fale Północnego Atlantyku. Dla lekkiego kadłuba BC950 oznacza to uderzenia o falę (pounding) i skrajne testowanie wodoszczelności sztormiaków Henri-Lloyd Elite.";
+                stat1.textContent = "Brak Ślizgu (Ostra Halsówka)";
+                stat1.className = "text-red-400 font-bold";
+                stat2.textContent = "Niska / Średnia (8-11 kn)";
+                stat2.className = "text-amber-400 font-bold";
+                stat3.textContent = "~3 050 Mm";
+                stat4.textContent = "Ekstremalne Ryzyko Sprzętowe";
+            }
+        }
+
+        function updateCalculator() {
+            const val = parseInt(document.getElementById('budget-slider').value);
+            document.getElementById('budget-val').textContent = val.toLocaleString('pl-PL') + ' EUR';
+
+            const baseAve = Math.round(val * 5.523);
+            const podiumAve = baseAve * 100;
+
+            document.getElementById('ave-base').textContent = baseAve.toLocaleString('pl-PL') + ' EUR';
+            document.getElementById('ave-podium').textContent = podiumAve.toLocaleString('pl-PL') + ' EUR';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+
+        function toggleFullscreen() {
+            try {
+                if (!document.fullscreenElement) {
+                    const docEl = document.documentElement;
+                    const requestFS = docEl.requestFullscreen || docEl.webkitRequestFullscreen || docEl.msRequestFullscreen;
+                    if (requestFS) {
+                        const res = requestFS.call(docEl);
+                        if (res && typeof res.catch === 'function') {
+                            res.catch(err => {
+                                console.warn("Fullscreen error:", err);
+                            });
+                        }
+                    }
+                } else {
+                    const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+                    if (exitFS) {
+                        const res = exitFS.call(document);
+                        if (res && typeof res.catch === 'function') {
+                            res.catch(err => {
+                                console.warn("Exit fullscreen error:", err);
+                            });
+                        }
+                    }
+                }
+            } catch (err) {
+                console.warn("Fullscreen API not supported:", err);
+            }
+        }
+
+        window.onload = function() {
+            initDots();
+            updateSlides();
+            updateCalculator();
+        };
+    </script>
+</body>
+</html>
